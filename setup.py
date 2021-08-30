@@ -28,6 +28,7 @@ setup(
     'Flask>=0.8',
     'Fanstatic',
     'Werkzeug',
+    'six',
   ],
   classifiers=[
     'Environment :: Web Environment',

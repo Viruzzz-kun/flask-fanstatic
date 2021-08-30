@@ -1,9 +1,9 @@
+import six
 from fanstatic import (init_needed, del_needed, Publisher, get_library_registry,
                        DEFAULT_SIGNATURE, Resource, Library, Group)
 from flask import Blueprint, g, Markup, current_app, request
-from werkzeug import cached_property
-from werkzeug.utils import import_string
-from werkzeug.wsgi import DispatcherMiddleware
+from werkzeug.utils import import_string, cached_property
+from werkzeug.middleware.dispatcher import DispatcherMiddleware
 
 
 class Fanstatic(object):
@@ -52,7 +52,7 @@ class Fanstatic(object):
 
   def group(self, name, items):
     items = [
-      self.resources[i] if isinstance(i, basestring) else i
+      self.resources[i] if isinstance(i, six.string_types) else i
       for i in items
     ]
     group = self.resources[name] = Group(items)
